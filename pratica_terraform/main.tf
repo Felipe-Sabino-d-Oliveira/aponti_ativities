@@ -1,1 +1,1 @@
-# comment.
+# este é um arquivo de configuração do Terraform para provisionar recursos na AWS
