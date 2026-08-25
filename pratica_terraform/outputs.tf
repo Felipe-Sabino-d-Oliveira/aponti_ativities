@@ -1,0 +1,1 @@
+# Este é o arquivo de outputs.tf, que define as saídas do Terraform para o projeto prática_terraform

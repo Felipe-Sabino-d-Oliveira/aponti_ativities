@@ -1,0 +1,1 @@
+# Este é o arquivo de saída do Terraform para exibir informações sobre os recursos provisionados na AWS
