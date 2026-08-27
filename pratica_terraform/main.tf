@@ -7,14 +7,9 @@
 # }
 
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
 }
 
-resource "aws_instance" "example" {
-  ami           = "ami-0c55b159cbfafe1f0"
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = "ExampleInstance"
-  }
+resource "aws_s3_bucket" "meu_bucket" {
+  bucket = var.bucket_name
 }
