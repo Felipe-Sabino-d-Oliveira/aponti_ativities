@@ -10,29 +10,25 @@ pipeline {
     
     agent any
 
-    tools{
-        nodejs "Node24"
-    }
-    
     stages {
         stage("Install"){
             steps{
                echo('Instalação de dependências')
-               sh "npm ci"
+               bat "npm ci"
                echo(message: 'Etapa Finalizada')
             }
         }
         stage("Build"){
             steps{
                 echo(message: 'Etapa de Build')
-                sh "npm run build"
+                bat "npm run build"
                 echo(message: 'Etapa Finalizada')
             }
         }
         stage("Test"){
             steps{
                 echo(message: 'Etapa de Testes')
-                sh "npm test"
+                bat "npm test"
                 echo(message: 'Etapa Finalizada')
             }
         }
