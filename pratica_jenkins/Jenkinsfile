@@ -1,0 +1,6 @@
+// Este é um comment do Jenkinsfile
+
+pipeline {
+    agent any
+    
+}
