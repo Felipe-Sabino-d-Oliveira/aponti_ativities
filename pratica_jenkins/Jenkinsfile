@@ -14,7 +14,7 @@ pipeline {
         stage("Install"){
             steps{
                echo('Instalação de dependências')
-               bat "npm ci"
+               bat "npm install"
                echo(message: 'Etapa Finalizada')
             }
         }
