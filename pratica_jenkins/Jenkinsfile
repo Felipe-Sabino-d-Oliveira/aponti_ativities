@@ -11,6 +11,12 @@ pipeline {
     agent any
 
     stages {
+        stage("Entering directory"){
+            steps{
+                echo(message: 'Entrando na pasta do projeto')
+                bat "cd pratica_jenkins/"
+            }
+        }
         stage("Install"){
             steps{
                echo('Instalação de dependências')
