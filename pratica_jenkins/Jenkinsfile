@@ -11,30 +11,31 @@ pipeline {
     agent any
 
     stages {
-        stage("Entering directory"){
-            steps{
-                echo(message: 'Entrando na pasta do projeto')
-                bat "cd pratica_jenkins/"
-            }
-        }
+        
         stage("Install"){
             steps{
-               echo('Instalação de dependências')
-               bat "npm install"
-               echo(message: 'Etapa Finalizada')
+                echo('Instalação de dependências')
+                dir('pratica_jenkins'){
+                    bat "npm install"
+                }
+                echo(message: 'Etapa Finalizada')
             }
         }
         stage("Build"){
             steps{
                 echo(message: 'Etapa de Build')
-                bat "npm run build"
+                dir('pratica_jenkins'){
+                    bat "npm run build"
+                }
                 echo(message: 'Etapa Finalizada')
             }
         }
         stage("Test"){
             steps{
                 echo(message: 'Etapa de Testes')
-                bat "npm test"
+                dir('pratica_jenkins'){
+                    bat "npm test"
+                }
                 echo(message: 'Etapa Finalizada')
             }
         }
