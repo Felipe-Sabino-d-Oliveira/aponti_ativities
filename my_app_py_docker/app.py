@@ -1,0 +1,1 @@
+print("Olá! Meu primeiro aplicativo Docker.")
