@@ -1,0 +1,72 @@
+#cloud-config
+
+package_update: true
+
+users:
+  - name: meu-usuario
+    gecos: Usuario Administrador
+    shell: /bin/bash
+    groups:
+      - sudo
+    sudo: "ALL=(ALL) NOPASSWD:ALL"
+    lock_passwd: true
+    ssh_authorized_keys:
+      - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIxDWEpIcGuLUlQiDE4SOawfnktD2aeEd+RnqmXXVYHE my-user-cloud-init"
+
+packages:
+  - docker.io
+  - nginx
+  - openssh-server
+
+write_files:
+  - path: /var/www/html/index.html
+    owner: root:root
+    permissions: "0644"
+    content: |
+      <!DOCTYPE html>
+      <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Laboratório Cloud-Init</title>
+        <style>
+          body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #101827;
+            color: #f1f5f9;
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+          }
+          main {
+            max-width: 680px;
+            margin: 24px;
+            padding: 36px;
+            border-radius: 16px;
+            background: #1e293b;
+            text-align: center;
+          }
+          h1 { color: #38bdf8; }
+          p { line-height: 1.7; }
+          .status { color: #86efac; font-weight: bold; }
+        </style>
+      </head>
+      <body>
+        <main>
+          <h1>Ambiente Cloud-Init configurado!</h1>
+          <p>Provisionamento automatizado com Ubuntu e Vagrant.</p>
+          <p>Servidor web: <strong>Nginx</strong></p>
+          <p>Plataforma de containers: <strong>Docker</strong></p>
+          <p class="status">Página personalizada carregada com sucesso.</p>
+        </main>
+      </body>
+      </html>
+
+runcmd:
+  - [systemctl, enable, --now, nginx]
+  - [systemctl, enable, --now, docker]
+  - [usermod, -aG, docker, meu-usuario]
+  - [systemctl, enable, --now, ssh]
+
+final_message: "Cloud-Init finalizado. Usuario, Docker, Nginx e pagina web configurados."
