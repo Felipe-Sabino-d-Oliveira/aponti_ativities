@@ -6,8 +6,9 @@ WORKDIR /my_app_py_docker
 
 COPY app.py .
 
-CMD ["python3", "app.py"]
+EXPOSE 5000
 
+CMD ["python3", "app.py"]
 
 # Fazer o build da imagem com o comando:
 # docker build . -t seuusuario/meu_app_python:1.0
